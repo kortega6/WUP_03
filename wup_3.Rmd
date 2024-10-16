@@ -12,12 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r include=FALSE}
 require(tidyverse)
 require(tigerstats)
-davisdata <- read.csv(file="UCDavis.csv")
+davisdata <- read.csv(file="UCDavis.csv" )
 ```
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
 
+
 ## Now with ggplot - first select the basic data
+
+$H_0$ : there is no difference between amount of alcohol consumed and where you sit.
+
+$H_A$ : There is a difference between the amount of alcohol consumed and where you sit.
+
+Alcohol is numerical,
+Seat is categorical.
 
 ```{r}
 basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
@@ -25,17 +33,24 @@ basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ## Now add in boxplot
 
 ```{r}
-basicCN + geom_boxplot()
+basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ```
   
+
+
   
 ### get fancy  
 
 ```{r}
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
-
+The box plot shows us that the consumption of alcohol for those in the back seats is the highest, while those in the middle consumed less, but more than those who consumed the least in the front seats.
 ## Numerical Summarys 
+
+```{r}
+favstats(alcohol~Seat,data=ucdavis1)
+```
+The average of the ounces consumed for those seated in the back would be 8.5, while those seated in the front have an average of 1.7 and those in the middle consumed and consumed and average of 3.3 ounces of alcohol.
 
 ## Inferential Tests
 
