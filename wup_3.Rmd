@@ -54,6 +54,20 @@ The average of the ounces consumed for those seated in the back would be 8.5, wh
 
 ## Inferential Tests
 
+```{r}
+model1 <-aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
+```
+
+The P-value is 0.000116 which is lower than 0.05, which causes us to reject the null hypothesis.
+
+```{r}
+plot(TukeyHSD(model1))
+```
+
+The tukey shows that both front-back and middle-back are different, but in the middle-front is not different. 
+
 ## Conclusions
 
+The boxplot showed us that those in the back seat consumed the most amount of alcohol while those in the middle seats consume less than them and those seated in the front consumed the least amount of alcohol. Then the numericalsummary showed us how the average of ounces of alcohol consumed by the people in the back seats is 8.5, average consumed by those in the front seat is 1.7 and finally those in the middle class seats consumed and average of 3.3 ouncees of alcohol. The P-Value in inferential tests is 0.000116 which is lower than 0.05. We then reject the null hypothesis since there is diference in alcohol consumption based on where sit.
 
